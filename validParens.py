@@ -4,7 +4,6 @@ def isValid(self, s):
     :rtype: bool
     """
     stack = []
-
     for ch in s:
         if ch == "(":
             stack.append(ch)

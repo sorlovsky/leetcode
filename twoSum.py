@@ -21,7 +21,7 @@ def twoSum(nums, target):
 
 
 def main():
-    print(twoSum([1, 3, 5], 8))
+    print(twoSum([1, 3, 5], 4))
 
 main()
 
