@@ -31,34 +31,60 @@ addNode(node1, ListNode(3))
 
 node2 = ListNode(5)
 addNode(node2, ListNode(6))
-addNode(node2, ListNode(4))
+# addNode(node2, ListNode(4))
 
 def addTwoNumbers(l1, l2):
-    root = ListNode(l1.val + l2.val)
-    currentL1 = l1
-    currentL2 = l2
-    current = root
-    carry = False
-    while (currentL1.next != None):
-        if currentL2 == None and carry == False:
-            addNode(currentL1)
-        elif currentL2 == None and carry == True:
-            addNode(currentL1 + 1)
-        sum = currentL1.next.val + currentL2.next.val 
-        if (sum < 10 and carry == False): 
-            addNode(root, ListNode(sum))
-        elif (sum + 1 < 10 and carry == True):
-            addNode(root, ListNode(sum + 1))
-            carry = False
-        elif (sum + 1 > 10 and carry == True):
-            addNode(root, ListNode(sum % 10))
-        else:
-            addNode(root, ListNode(sum % 10))
-            carry = True
-        currentL1 = currentL1.next
-        currentL2 = currentL2.next
-        current = current.next
-    return root
+	root = ListNode(l1.val + l2.val)
+	currentL1 = l1
+        currentL2 = l2
+        current = root
+        carry = False
+        while (currentL1.next != None) or (currentL2.next != None):
+            print("hello")
+            # if currentL2.next == None and carry == False:
+                # addNode(root, ListNode(currentL1.next.val))
+            # elif currentL2.next == None and carry == True:
+                # addNode(root, ListNode(currentL1.next.val + 1))
+                
+            # if currentL1.next == None and carry == False:
+                # addNode(root, ListNode(currentL2.next.val))
+            # elif currentL1.next == None and carry == True:
+                # addNode(root, ListNode(currentL2.next.val + 1))
+                
+            # if currentL1 == None and carry == False:
+            #     addNode(root, ListNode(currentL2))
+            # elif currentL1 == None and carry == True:
+            #     addNode(root, ListNode(currentL2 + 1))
+                
+            else:
+                if hasattr(currentL1.next, 'val') and hasattr(currentL2.next, 'val'):
+                    sum = currentL1.next.val + currentL2.next.val
+                    if (sum < 10 and carry == False):
+                        addNode(root, ListNode(sum))
+                    elif (sum + 1 < 10 and carry == True):
+                        addNode(root, ListNode(sum + 1))
+                        carry = False
+                    elif (sum + 1 > 10 and carry == True):
+                        addNode(root, ListNode(sum % 10))
+                    else:
+                        addNode(root, ListNode(sum % 10))
+                        carry = True
+            currentL1 = currentL1.next
+            currentL2 = currentL2.next
+            current = current.next
+            if !(hasattr(currentL1, 'next')) and hasattr(currentL2, 'next'):
+                break
+        if hasattr(currentL1, 'next'):
+            while (currentL1.next != None):
+                if carry == False:
+                    addNode(root, ListNode(currentL1.next.val))
+                else:
+                    if currentL1.next.val == 9:
+                        addNode(root, ListNode(0))
+                    else:
+                        addNode(root, ListNode(currentL1.next.val))
 
+
+        return root
 node = addTwoNumbers(node1, node2)
 node.printList()
