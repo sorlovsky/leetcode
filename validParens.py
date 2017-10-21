@@ -5,11 +5,7 @@ def isValid(self, s):
     """
     stack = []
     for ch in s:
-        if ch == "(":
-            stack.append(ch)
-        if ch == "[":
-            stack.append(ch)
-        if ch == "{":
+        if ch == "(" or ch == "[" or ch == "{":
             stack.append(ch)
 
         if ch == ")":
